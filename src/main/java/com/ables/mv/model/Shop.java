@@ -7,6 +7,7 @@ package com.ables.mv.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -16,7 +17,9 @@ import javax.persistence.Id;
 @Entity
 public class Shop implements Serializable{
     private String name;
+    
     @Id
+    @GeneratedValue
     private Integer id;
     private Integer emplNumber;
     public String getName() {

@@ -7,16 +7,10 @@ package com.ables.mv.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import java.util.Properties;
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -31,7 +25,6 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  * @author ables
  */
 @Configuration
-@EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("com.ables.mv")
 @EnableJpaRepositories("com.ables.mv.repo")
@@ -60,10 +53,10 @@ public BoneCPDataSource getDataSource() {
  
       return em;
    }
-
+//@Bean
 	private Properties additionalProperties() {
       Properties properties = new Properties();
-      properties.setProperty("hibernate.hbm2ddl.auto", "create");
+      properties.setProperty("hibernate.hbm2ddl.auto", "update");
       properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL82Dialect");
       properties.setProperty("hibernate.show_sql", "true");
       return properties;

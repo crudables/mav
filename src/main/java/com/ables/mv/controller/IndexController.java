@@ -22,12 +22,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author ables
  */
 @Controller
-@RequestMapping(value="/shop")
+//@RequestMapping(value="/shop")
 public class IndexController {
     
     @Autowired
 	private ShopService shopService;
-
+    
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public ModelAndView homePage(){
+        ModelAndView mv = new ModelAndView("index");
+        Shop shop = new Shop();
+        shop.setEmplNumber(1);
+        shop.setName("Awolaju Saheed");
+        shopService.create(shop);
+        System.out.println("create shop:"+shop.getName());
+        return mv;
+    }
+    
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public ModelAndView newShopPage() {
 		ModelAndView mav = new ModelAndView("shop-new", "shop", new Shop());
